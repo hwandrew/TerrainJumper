@@ -6,11 +6,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+	public float speed = 2.0f;
+	public float jumpHeight = 2.0f;
+
     RaycastHit hit;
+	Rigidbody rb;
+	float groundDist = 0.5f;
 
 	// Use this for initialization
 	void Start () {
-
+		rb = this.GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -21,13 +26,18 @@ public class PlayerController : MonoBehaviour {
 
     void MovePlayer()
     {
-        float translation = Input.GetAxisRaw("Vertical");
-        float straffe = Input.GetAxisRaw("Horizontal");
+        float translation = Input.GetAxis("Vertical");
+        float straffe = Input.GetAxis("Horizontal");
 
         translation *= Time.deltaTime;
         straffe *= Time.deltaTime;
 
-        transform.Translate(straffe, 0, translation);
+        transform.Translate(straffe * speed, 0, translation * speed);
+
+		if (Input.GetButtonDown("Jump") && IsOnFloor())
+		{
+			rb.AddForce(Vector3.up * jumpHeight);
+		}
     }
 
     void DetectBlocks()
@@ -45,4 +55,9 @@ public class PlayerController : MonoBehaviour {
             }
         }
     }
+
+	bool IsOnFloor()
+	{
+		return Physics.Raycast(transform.position, Vector3.down, groundDist + 0.05f);
+	}
 }
