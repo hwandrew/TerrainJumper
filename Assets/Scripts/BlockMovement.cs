@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: add different block interactions?
+
 public class BlockMovement : MonoBehaviour {
 
     public float speed = 4.0f;

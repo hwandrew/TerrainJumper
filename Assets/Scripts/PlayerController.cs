@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /* Partially taken from Holistic3D on Youtube    */
 
@@ -22,9 +23,32 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         MovePlayer();
         DetectBlocks();
+		FallReset();
 	}
 
-    void MovePlayer()
+	public void Reset()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
+
+	private void OnCollisionStay(Collision collision)
+	{
+		if (collision.gameObject.CompareTag("Moveable") && collision.gameObject.GetComponent<BlockMovement>().canStart)
+		{
+			// TODO: make nice death here
+			Reset();
+		}
+	}
+
+	private void FallReset()
+	{
+		if (transform.position.y < -30f)
+		{
+			Reset();
+		}
+	}
+
+    private void MovePlayer()
     {
         float translation = Input.GetAxis("Vertical");
         float straffe = Input.GetAxis("Horizontal");
@@ -40,7 +64,7 @@ public class PlayerController : MonoBehaviour {
 		}
     }
 
-    void DetectBlocks()
+    private void DetectBlocks()
     {
         // send the raycast out of the camera child object
         bool detected = Physics.Raycast(transform.position, transform.GetChild(0).transform.forward, out hit);
@@ -49,14 +73,12 @@ public class PlayerController : MonoBehaviour {
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                // TODO: use hit information to move block upwards
-                Debug.Log("trying to move...");
                 hit.transform.gameObject.GetComponent<BlockMovement>().StartMoveBlock();
             }
         }
     }
 
-	bool IsOnFloor()
+	private bool IsOnFloor()
 	{
 		return Physics.Raycast(transform.position, Vector3.down, groundDist + 0.05f);
 	}
