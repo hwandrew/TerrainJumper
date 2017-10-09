@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		rb = this.GetComponent<Rigidbody>();
         Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	// Update is called once per frame
@@ -26,9 +27,18 @@ public class PlayerController : MonoBehaviour {
         DetectBlocks();
 		FallReset();
 
+		// press escape to allow cursor to exit the game screen
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.visible = !Cursor.visible;
+			if (Cursor.lockState == CursorLockMode.Locked)
+			{
+				Cursor.lockState = CursorLockMode.None;
+			}
+			else
+			{
+				Cursor.lockState = CursorLockMode.Locked;
+			}
         }
 	}
 
@@ -77,9 +87,11 @@ public class PlayerController : MonoBehaviour {
 
         if (detected && hit.transform.gameObject.CompareTag("Moveable"))
         {
+			BasicBlockMovement curr = hit.transform.gameObject.GetComponent<BasicBlockMovement>();
+			curr.isLooking = true;
             if (Input.GetButtonDown("Fire1"))
             {
-                hit.transform.gameObject.GetComponent<BasicBlockMovement>().StartMoveBlock();
+                curr.StartMoveBlock();
             }
         }
     }

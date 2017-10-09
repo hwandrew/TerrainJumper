@@ -105,8 +105,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34539bc389ecf7848aeb0361bb35c1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normColor: {r: 0.85294116, g: 0.16838235, b: 0.106617644, a: 1}
+  hoverColor: {r: 0.97794116, g: 0.5752595, b: 0.5752595, a: 1}
   speed: 4
   moveDist: 2
   timeUp: 1
   timeDown: 4
   canStart: 1
+  isLooking: 0
