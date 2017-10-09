@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /* Partially taken from Holistic3D on Youtube    */
 
 public class PlayerController : MonoBehaviour {
 
+	public Text winText;
 	public float speed = 2.0f;
 	public float jumpHeight = 2.0f;
 
@@ -54,6 +56,17 @@ public class PlayerController : MonoBehaviour {
 			// TODO: make nice death here
 			Reset();
 		}
+		else if (collision.gameObject.name == "Finish")
+		{
+			winText.text = "Nice!";
+			StartCoroutine(LongReset());
+		}
+	}
+
+	public IEnumerator LongReset()
+	{
+		yield return new WaitForSeconds(2);
+		Reset();
 	}
 
 	private void FallReset()
@@ -87,12 +100,24 @@ public class PlayerController : MonoBehaviour {
 
         if (detected && hit.transform.gameObject.CompareTag("Moveable"))
         {
-			BasicBlockMovement curr = hit.transform.gameObject.GetComponent<BasicBlockMovement>();
-			curr.isLooking = true;
-            if (Input.GetButtonDown("Fire1"))
-            {
-                curr.StartMoveBlock();
-            }
+			if (hit.transform.gameObject.GetComponent<BasicBlockMovement>() != null)
+			{
+				BasicBlockMovement curr = hit.transform.gameObject.GetComponent<BasicBlockMovement>();
+				curr.isLooking = true;
+				if (Input.GetButtonDown("Fire1"))
+				{
+					curr.StartMoveBlock();
+				}
+			}
+			else if (hit.transform.gameObject.GetComponent<HorizontalBlockMovement>() != null)
+			{
+				HorizontalBlockMovement curr = hit.transform.gameObject.GetComponent<HorizontalBlockMovement>();
+				curr.isLooking = true;
+				if (Input.GetButtonDown("Fire1"))
+				{
+					curr.StartMoveBlock();
+				}
+			}
         }
     }
 
