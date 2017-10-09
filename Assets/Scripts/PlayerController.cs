@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = this.GetComponent<Rigidbody>();
+        Cursor.visible = false;
 	}
 	
 	// Update is called once per frame
@@ -24,6 +25,11 @@ public class PlayerController : MonoBehaviour {
         MovePlayer();
         DetectBlocks();
 		FallReset();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.visible = !Cursor.visible;
+        }
 	}
 
 	public void Reset()
@@ -33,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void OnCollisionStay(Collision collision)
 	{
-		if (collision.gameObject.CompareTag("Moveable") && collision.gameObject.GetComponent<BlockMovement>().canStart)
+		if (collision.gameObject.CompareTag("Moveable") && collision.gameObject.GetComponent<BasicBlockMovement>().canStart)
 		{
 			// TODO: make nice death here
 			Reset();
@@ -73,7 +79,7 @@ public class PlayerController : MonoBehaviour {
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                hit.transform.gameObject.GetComponent<BlockMovement>().StartMoveBlock();
+                hit.transform.gameObject.GetComponent<BasicBlockMovement>().StartMoveBlock();
             }
         }
     }
