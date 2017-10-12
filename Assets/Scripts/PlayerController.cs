@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour {
         DetectBlocks();
 		FallReset();
 
+        // Debug.Log(transform.forward);
+
 		// press escape to allow cursor to exit the game screen
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -87,7 +89,7 @@ public class PlayerController : MonoBehaviour {
 
         transform.Translate(straffe * speed, 0, translation * speed);
 
-		if (Input.GetButtonDown("Jump") && IsOnFloor())
+        if (Input.GetButtonDown("Jump") && IsOnFloor())
 		{
 			rb.AddForce(Vector3.up * jumpHeight);
 		}
@@ -124,14 +126,6 @@ public class PlayerController : MonoBehaviour {
 	private bool IsOnFloor()
 	{
 		RaycastHit temp;
-		if (Physics.SphereCast(transform.position, 1.05f, Vector3.down, out temp, groundDist + 0.05f))
-		{
-			Debug.Log("Grounded!!!");
-		}
-		else
-		{
-			Debug.Log("Fuck...");
-		}
-		return Physics.SphereCast(transform.position, 1.0f, Vector3.down, out temp, groundDist + 0.05f);
+		return Physics.SphereCast(transform.position + Vector3.up, 1.0f, Vector3.down, out temp, groundDist + 0.05f);
 	}
 }
