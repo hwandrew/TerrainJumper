@@ -123,6 +123,15 @@ public class PlayerController : MonoBehaviour {
 
 	private bool IsOnFloor()
 	{
-		return Physics.Raycast(transform.position, Vector3.down, groundDist + 0.05f);
+		RaycastHit temp;
+		if (Physics.SphereCast(transform.position, 1.05f, Vector3.down, out temp, groundDist + 0.05f))
+		{
+			Debug.Log("Grounded!!!");
+		}
+		else
+		{
+			Debug.Log("Fuck...");
+		}
+		return Physics.SphereCast(transform.position, 1.0f, Vector3.down, out temp, groundDist + 0.05f);
 	}
 }
