@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void OnCollisionStay(Collision collision)
 	{
-		if (collision.gameObject.CompareTag("Moveable") && collision.gameObject.GetComponent<BasicBlockMovement>().canStart)
+		if (collision.gameObject.CompareTag("Moveable") && !collision.gameObject.GetComponent<BlockInfo>().isSafe)
 		{
 			// TODO: make nice death here
 			Reset();
@@ -102,24 +102,13 @@ public class PlayerController : MonoBehaviour {
 
         if (detected && hit.transform.gameObject.CompareTag("Moveable"))
         {
-			if (hit.transform.gameObject.GetComponent<BasicBlockMovement>() != null)
-			{
-				BasicBlockMovement curr = hit.transform.gameObject.GetComponent<BasicBlockMovement>();
-				curr.isLooking = true;
-				if (Input.GetButtonDown("Fire1"))
-				{
-					curr.StartMoveBlock();
-				}
-			}
-			else if (hit.transform.gameObject.GetComponent<HorizontalBlockMovement>() != null)
-			{
-				HorizontalBlockMovement curr = hit.transform.gameObject.GetComponent<HorizontalBlockMovement>();
-				curr.isLooking = true;
-				if (Input.GetButtonDown("Fire1"))
-				{
-					curr.StartMoveBlock();
-				}
-			}
+            BlockInfo currentBlock = hit.transform.gameObject.GetComponent<BlockInfo>();
+            currentBlock.HighlightBlock();
+            
+            if (Input.GetButtonDown("Fire1"))
+            {
+                currentBlock.StartMoveBlock();
+            }
         }
     }
 

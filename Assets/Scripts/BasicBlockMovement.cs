@@ -50,15 +50,6 @@ public class BasicBlockMovement : MonoBehaviour {
 
 	/* ---------- MOVING BLOCK FUNCTIONS ----------*/
 
-    public void StartMoveBlock()
-    {
-        if (canStart)
-        {
-            canStart = false;
-            StartCoroutine(MoveBlock());
-        }
-    }
-
     public IEnumerator MoveBlock()
     {
         for (float i = 0.0f; i < timeUp; i += Time.deltaTime * speed)
