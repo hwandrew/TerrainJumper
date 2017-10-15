@@ -12,12 +12,14 @@ public class PlayerController : MonoBehaviour {
 	public float speed = 2.0f;
 	public float jumpHeight = 2.0f;
 
+	GameManager instance;
     RaycastHit hit;
 	Rigidbody rb;
 	float groundDist = 0.5f;
 
 	// Use this for initialization
 	void Start () {
+		instance = GameObject.Find("GameManager").GetComponent<GameManager>();
 		rb = this.GetComponent<Rigidbody>();
         Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
@@ -53,10 +55,13 @@ public class PlayerController : MonoBehaviour {
 
 	private void OnCollisionStay(Collision collision)
 	{
-		if (collision.gameObject.CompareTag("Moveable") && !collision.gameObject.GetComponent<BlockInfo>().isSafe)
+		if (collision.gameObject.GetComponent<BlockInfo>() != null)
 		{
-			// TODO: make nice death here
-			Reset();
+			if (!collision.gameObject.GetComponent<BlockInfo>().isSafe)
+			{
+				// TODO: make nice death here
+				instance.ResetLevel();
+			}
 		}
 		else if (collision.gameObject.name == "Finish")
 		{
@@ -68,14 +73,14 @@ public class PlayerController : MonoBehaviour {
 	public IEnumerator LongReset()
 	{
 		yield return new WaitForSeconds(2);
-		Reset();
+		instance.LoadNextLevel();
 	}
 
 	private void FallReset()
 	{
 		if (transform.position.y < -30f)
 		{
-			Reset();
+			instance.ResetLevel();
 		}
 	}
 

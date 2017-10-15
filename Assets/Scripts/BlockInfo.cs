@@ -28,6 +28,10 @@ public class BlockInfo : MonoBehaviour {
             case "Green":
                 type2 = this.GetComponent<GreenBlockMovement>();
                 break;
+			case "Death":
+				isSafe = false;
+			this.GetComponent<Renderer>().material.color = new Color((219/255f), (74/255f), (74/255f));
+				break;
             default:
                 Debug.LogWarning("typeBlock is probably null!");
                 break;
@@ -45,6 +49,8 @@ public class BlockInfo : MonoBehaviour {
                 break;
             case "Green":
                 break;
+			case "Death":
+				break;
             default:
                 isSafe = true;
                 break;

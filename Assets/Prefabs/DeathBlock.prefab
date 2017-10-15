@@ -9,47 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1865817226082822}
+  m_RootGameObject: {fileID: 1802378216267572}
   m_IsPrefabParent: 1
---- !u!1 &1865817226082822
+--- !u!1 &1802378216267572
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4086890746947788}
-  - component: {fileID: 33125474754521664}
-  - component: {fileID: 65356178321279344}
-  - component: {fileID: 23918572610396812}
-  - component: {fileID: 114737705102938472}
-  - component: {fileID: 114989662494785134}
+  - component: {fileID: 4599459773061956}
+  - component: {fileID: 33759213422689284}
+  - component: {fileID: 65540094824957228}
+  - component: {fileID: 23317969605280574}
+  - component: {fileID: 114611778345738908}
   m_Layer: 0
-  m_Name: GreenBlock
-  m_TagString: Moveable
+  m_Name: DeathBlock
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4086890746947788
+--- !u!4 &4599459773061956
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1865817226082822}
+  m_GameObject: {fileID: 1802378216267572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 0}
+  m_LocalPosition: {x: -3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23918572610396812
+--- !u!23 &23317969605280574
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1865817226082822}
+  m_GameObject: {fileID: 1802378216267572}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -76,54 +75,35 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33125474754521664
+--- !u!33 &33759213422689284
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1865817226082822}
+  m_GameObject: {fileID: 1802378216267572}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65356178321279344
+--- !u!65 &65540094824957228
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1865817226082822}
+  m_GameObject: {fileID: 1802378216267572}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114737705102938472
+--- !u!114 &114611778345738908
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1865817226082822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30ff5ce7f084f1b4bb54c9bdb1cbcca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  endPos: {x: 4, y: 0, z: 4}
-  normColor: {r: 0.032439433, g: 0.7352941, b: 0.12453756, a: 1}
-  hoverColor: {r: 0.4496107, g: 0.7941176, b: 0.4496107, a: 1}
-  speed: 4
-  time: 1
-  canStart: 1
-  atStart: 1
-  isLooking: 0
---- !u!114 &114989662494785134
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1865817226082822}
+  m_GameObject: {fileID: 1802378216267572}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16f1b93c9d309d64a88f6166cb934849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isSafe: 0
-  typeBlock: Green
+  typeBlock: Death
