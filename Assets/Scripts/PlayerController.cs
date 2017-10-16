@@ -48,9 +48,15 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-	public void Reset()
+	public void DisableInput()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		this.enabled = false;
+		Cursor.lockState = CursorLockMode.Locked;
+	}
+
+	public void EnableInput()
+	{
+		this.enabled = true;
 	}
 
 	private void OnCollisionStay(Collision collision)

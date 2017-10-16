@@ -8,8 +8,11 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance;
 
+	GameObject flyThrough;
+	GameObject mainCam;
+	GameObject player;
 	string currentScene;
-    int levelNum = 1;
+	int resetCounter = 0;
 
 	// Use this for initialization
 	void Awake () {
@@ -24,6 +27,7 @@ public class GameManager : MonoBehaviour {
 		}
 
         currentScene = "Level_1";
+		StartCoroutine(LoadLevel("Level1"));
 	}
 	
 	// Update is called once per frame
@@ -42,7 +46,15 @@ public class GameManager : MonoBehaviour {
         int lvlNum = int.Parse(split[1]);
         lvlNum++;
         string newLevel = split[0] + lvlNum.ToString();
-        SceneManager.LoadScene(newLevel);
+        SceneManager.LoadScene(newLevel + "Anim");
         currentScene = split[0] + '_' + lvlNum.ToString();
+		StartCoroutine(LoadLevel(newLevel));
+	}
+
+	private IEnumerator LoadLevel(string level)
+	{
+		yield return null;
+		//yield return new WaitForSeconds(5);
+		//SceneManager.LoadScene(level);
 	}
 }
