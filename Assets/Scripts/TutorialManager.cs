@@ -9,6 +9,7 @@ public class TutorialManager : MonoBehaviour {
     public Material mouse2;
     public GameObject wasd;
     public GameObject space;
+	public GameObject pauseInfo;
     public GameObject player;
 
     private int frames = 0;
@@ -40,7 +41,8 @@ public class TutorialManager : MonoBehaviour {
 
     private IEnumerator DeleteInstructions()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
+		Destroy(pauseInfo);
         Destroy(wasd);
         Destroy(space);
     }

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance;
+	public PauseMenuManager pauseInstance;
+	public Coroutine levelLoader;
 
 	GameObject flyThrough;
 	GameObject mainCam;
@@ -48,13 +50,25 @@ public class GameManager : MonoBehaviour {
         string newLevel = split[0] + lvlNum.ToString();
         SceneManager.LoadScene(newLevel + "Anim");
         currentScene = split[0] + '_' + lvlNum.ToString();
-		StartCoroutine(LoadLevel(newLevel));
+		levelLoader = StartCoroutine(LoadLevel(newLevel));
 	}
 
 	private IEnumerator LoadLevel(string level)
 	{
-		yield return null;
-		//yield return new WaitForSeconds(5);
-		//SceneManager.LoadScene(level);
+		// yield return null;
+		pauseInstance.enabled = false;
+		yield return new WaitForSeconds(5);
+		SceneManager.LoadScene(level);
+		pauseInstance.enabled = true;
+	}
+
+	public void SetCurrentLevel(string newSceneName)
+	{
+		currentScene = newSceneName;
+	}
+
+	public string GetCurrentLevel()
+	{
+		return currentScene;
 	}
 }

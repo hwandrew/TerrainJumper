@@ -32,26 +32,12 @@ public class PlayerController : MonoBehaviour {
 		FallReset();
 
         // Debug.Log(transform.forward);
-
-		// press escape to allow cursor to exit the game screen
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Cursor.visible = !Cursor.visible;
-			if (Cursor.lockState == CursorLockMode.Locked)
-			{
-				Cursor.lockState = CursorLockMode.None;
-			}
-			else
-			{
-				Cursor.lockState = CursorLockMode.Locked;
-			}
-        }
 	}
 
 	public void DisableInput()
 	{
 		this.enabled = false;
-		Cursor.lockState = CursorLockMode.Locked;
+		// Cursor.lockState = CursorLockMode.Locked;
 	}
 
 	public void EnableInput()
@@ -72,6 +58,10 @@ public class PlayerController : MonoBehaviour {
 		else if (collision.gameObject.name == "Finish")
 		{
 			winText.text = "Nice!";
+			if (instance.GetCurrentLevel() == "Level_6")
+			{
+				winText.text = "Congrats, you've won!";
+			}
 			StartCoroutine(LongReset());
 		}
 	}
