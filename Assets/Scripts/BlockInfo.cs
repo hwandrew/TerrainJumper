@@ -12,7 +12,6 @@ public class BlockInfo : MonoBehaviour {
     HorizontalBlockMovement type1;
     GreenBlockMovement type2;
 
-	// Use this for initialization
 	void Start () {
         isSafe = true;
         
@@ -57,6 +56,9 @@ public class BlockInfo : MonoBehaviour {
         }
     }
 
+    /*
+     * Change the color of the block if the player is looking at it
+     */
     public void HighlightBlock()
     {
         switch (typeBlock)
@@ -76,6 +78,9 @@ public class BlockInfo : MonoBehaviour {
         }
     }
 
+    /*
+     * If player clicks block, start the basic movement/animation of the block
+     */
     public void StartMoveBlock()
     {
         switch (typeBlock)

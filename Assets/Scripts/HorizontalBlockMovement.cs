@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* 
+ * The basic block moves vertically according to the moveDist and speed. The block's initial
+ * movement is fast until it reaches the destination, then slowly lerps back to the starting
+ * position. Block can be landed on anytime
+ */
+
 public class HorizontalBlockMovement : MonoBehaviour {
 
 	public Color normColor = Color.blue;

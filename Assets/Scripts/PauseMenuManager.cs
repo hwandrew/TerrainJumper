@@ -54,7 +54,7 @@ public class PauseMenuManager : MonoBehaviour {
 			}
 			else
 			{
-				// paused
+				// pause
 				Cursor.visible = true;
 				Cursor.lockState = CursorLockMode.None;
 				mainCam.GetComponent<MouseLook>().enabled = false;
@@ -66,6 +66,7 @@ public class PauseMenuManager : MonoBehaviour {
 		}
 	}
 
+    // Resets the current level when player clicks the "Reset Level" button in the pause menu
 	public void ResetLevel()
 	{
 		Time.timeScale = 1.0f;
@@ -78,6 +79,7 @@ public class PauseMenuManager : MonoBehaviour {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
+    // Resets the game when player clicks the "Reset Game" button in the pause menu
 	public void ResetGame()
 	{
 		Time.timeScale = 1.0f;
@@ -91,6 +93,7 @@ public class PauseMenuManager : MonoBehaviour {
 		SceneManager.LoadScene("Level1");
 	}
 
+    // Quits the application when player clicks the "Quit Game" button in the pause menu
 	public void QuitGame()
 	{
 		Time.timeScale = 1.0f;

@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: add different block interactions?
+/* 
+ * The basic block moves vertically according to the moveDist and speed. The block's initial
+ * movement is fast until it reaches the destination, then slowly lerps back to the starting
+ * position. This block cannot be landed on if it is at its starting position.
+ */
 
 public class BasicBlockMovement : MonoBehaviour {
 
@@ -50,6 +54,9 @@ public class BasicBlockMovement : MonoBehaviour {
 
 	/* ---------- MOVING BLOCK FUNCTIONS ----------*/
 
+    /* 
+     * Moves block vertically from startPos to endPos, then back after 2 seconds
+     */
     public IEnumerator MoveBlock()
     {
         for (float i = 0.0f; i < timeUp; i += Time.deltaTime * speed)

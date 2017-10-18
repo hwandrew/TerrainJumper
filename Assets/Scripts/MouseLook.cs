@@ -28,8 +28,11 @@ public class MouseLook : MonoBehaviour {
         smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
         smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
         mouseLook += smoothV * sensitivity;
+        // prevent user from going upside down when rotating on x-axis (looking up/down)
         mouseLook.y = Mathf.Clamp(mouseLook.y, minY, maxY);
 
+        // Quaternion.AngleAxis changes the local axis of object when assigned to transform.localRotation
+        // allows transform.forward to be infront of the direction that the player is facing
         transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
 		character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, Vector3.up);
     }

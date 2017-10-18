@@ -2,8 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Green block moves from location A (startPos) to location B (endPos) when clicked. The block stays
+ * at B until clicked again, in which it then goes back to location A
+ * 
+ * Block can be landed on anytime
+ */
+
 public class GreenBlockMovement : MonoBehaviour {
 
+    // set in inspector
     public Vector3 endPos;
     public Color normColor = Color.green;
     public Color hoverColor = Color.green;
@@ -47,6 +55,11 @@ public class GreenBlockMovement : MonoBehaviour {
 
     /* ---------- MOVING BLOCK FUNCTIONS ----------*/
 
+    /*
+     * Moves block from startPos to endPos when clicked once
+     * 
+     * If the block is clicked again, the block is moved from endPos back to startPos
+     */
     public IEnumerator MoveBlock()
     {
         if (atStart)

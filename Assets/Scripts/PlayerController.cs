@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-/* Partially taken from Holistic3D on Youtube    */
+/* Partially taken from Holistic3D on Youtube */
 
 public class PlayerController : MonoBehaviour {
 
@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		instance = GameObject.Find("GameManager").GetComponent<GameManager>();
 		rb = this.GetComponent<Rigidbody>();
+
+        // get rid of the cursor
         Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
 	}
@@ -66,12 +68,20 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+
+    /*
+     * Waits 2 seconds, then loads the next level
+     * Function is called after player reaches the end of a level
+     */
 	public IEnumerator LongReset()
 	{
 		yield return new WaitForSeconds(2);
 		instance.LoadNextLevel();
 	}
 
+    /*
+     * Restarts the current level when a player falls off the blocks
+     */
 	private void FallReset()
 	{
 		if (transform.position.y < -30f)
@@ -80,6 +90,10 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+    /*
+     * Uses build in inputManager to move player
+     * Player can move left, right, forward, backwards, and up (jump)
+     */
     private void MovePlayer()
     {
         float translation = Input.GetAxis("Vertical");
@@ -90,12 +104,19 @@ public class PlayerController : MonoBehaviour {
 
         transform.Translate(straffe * speed, 0, translation * speed);
 
+        // jumping...
         if (Input.GetButtonDown("Jump") && IsOnFloor())
 		{
 			rb.AddForce(Vector3.up * jumpHeight);
 		}
     }
 
+    /*
+     * DetectBlocks() manages the point-and-click feature of the game
+     * When a player looks straight at a block, the block changes color slightly to indicate
+     *      that the block can be clicked on
+     * Uses Physics.Raycast to check if there is a clickable block infront of the player
+     */
     private void DetectBlocks()
     {
         // send the raycast out of the camera child object
@@ -113,6 +134,9 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    /*
+     * Checks if the player is touching the floor, returns true if touching and false if not touching
+     */
 	private bool IsOnFloor()
 	{
 		RaycastHit temp;

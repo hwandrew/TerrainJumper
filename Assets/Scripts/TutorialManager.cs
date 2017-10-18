@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * In charge of any tutorial aspect. This script is only found in scene "Level1"
+ */
+
 public class TutorialManager : MonoBehaviour {
 
     public GameObject mousePlane;
@@ -22,6 +26,7 @@ public class TutorialManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        // every 20 frames, change the image of the mouse back and forth to show clicking
 		if (frames % 20 == 0)
         {
             if (isMouse1)
@@ -36,9 +41,11 @@ public class TutorialManager : MonoBehaviour {
         }
         frames++;
 
+        // here is an attempt to rotate the plane according to where the player position is
         mousePlane.transform.rotation = Quaternion.LookRotation(-player.transform.forward, player.transform.up);
     }
 
+    // get rid of the mildly annoying placement and intrusion of my WASD and Space icons to show player controls
     private IEnumerator DeleteInstructions()
     {
         yield return new WaitForSeconds(5);
