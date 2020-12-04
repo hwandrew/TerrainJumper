@@ -1,0 +1,9 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "TerrainJumperOut.data.unityweb",
+"asmCodeUrl": "TerrainJumperOut.asm.code.unityweb",
+"asmMemoryUrl": "TerrainJumperOut.asm.memory.unityweb",
+"asmFrameworkUrl": "TerrainJumperOut.asm.framework.unityweb",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}
